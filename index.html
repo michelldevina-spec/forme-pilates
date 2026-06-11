@@ -322,6 +322,60 @@ body::after{
 .sticky-cta.hidden{transform:translateY(100%);}
 @media(min-width:900px){.sticky-cta{display:none;}}
 
+/* ===== WhatsApp Widget ===== */
+.whatsapp-widget{
+  position:fixed;right:20px;bottom:84px;z-index:950;
+}
+@media(min-width:900px){
+  .whatsapp-widget{bottom:28px;}
+}
+.whatsapp-launcher{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--charcoal);color:var(--fog);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px rgba(0,0,0,0.18);
+  transition:background 0.2s ease;
+}
+.whatsapp-launcher:hover{background:var(--graphite);}
+.whatsapp-launcher svg{width:26px;height:26px;}
+.whatsapp-launcher .icon-close{display:none;}
+.whatsapp-widget.open .whatsapp-launcher .icon-chat{display:none;}
+.whatsapp-widget.open .whatsapp-launcher .icon-close{display:block;}
+.whatsapp-panel{
+  position:absolute;right:0;bottom:calc(100% + 16px);width:280px;max-width:calc(100vw - 40px);
+  background:var(--white);border:1px solid var(--dove);padding:18px;
+  box-shadow:0 8px 28px rgba(0,0,0,0.12);
+  max-height:60vh;overflow-y:auto;
+  opacity:0;transform:translateY(12px) scale(0.98);pointer-events:none;
+  transition:opacity 0.25s ease,transform 0.25s ease;
+}
+.whatsapp-widget.open .whatsapp-panel{
+  opacity:1;transform:translateY(0) scale(1);pointer-events:auto;
+}
+.whatsapp-panel-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--dove);
+}
+.whatsapp-panel-header h3{
+  font-family:var(--sans);font-size:0.78rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--charcoal);font-weight:500;
+}
+.whatsapp-panel-close{
+  background:none;border:none;cursor:pointer;color:var(--charcoal);
+  width:24px;height:24px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.whatsapp-panel-close svg{width:16px;height:16px;}
+.whatsapp-prompts{display:flex;flex-direction:column;gap:8px;}
+.whatsapp-prompt{
+  display:block;padding:10px 12px;border:1px solid var(--dove);
+  color:var(--charcoal);font-size:0.85rem;text-decoration:none;line-height:1.4;
+  transition:background 0.2s ease,border-color 0.2s ease;
+}
+.whatsapp-prompt:hover{background:var(--fog);border-color:var(--charcoal);}
+@media(prefers-reduced-motion:reduce){
+  .whatsapp-panel{transition:none;}
+}
+
 /* ===== Difference / Benefit Cards ===== */
 .difference{background:var(--fog);}
 .cards-grid{
@@ -682,7 +736,7 @@ body::after{
   "description": "Boutique reformer and mat Pilates studio in Singapore offering beginner-friendly reformer Pilates, mat Pilates, prenatal & postnatal classes, and private sessions for women.",
   "image": "https://michelldevina-spec.github.io/forme-pilates/FORME_Pilates_Logo.png",
   "url": "https://michelldevina-spec.github.io/forme-pilates/",
-  "telephone": "+65 8912 3456",
+  "telephone": "+65 8372 8852",
   "priceRange": "$$",
   "currenciesAccepted": "SGD",
   "paymentAccepted": "Cash, Credit Card, PayNow, Apple Pay, Google Pay",
@@ -1220,7 +1274,7 @@ body::after{
       </div>
       <div class="footer-col">
         <h4>Get In Touch</h4>
-        <a href="https://wa.me/6589123456" target="_blank" rel="noopener">WhatsApp: +65 8912 3456</a>
+        <a href="https://wa.me/6583728852" target="_blank" rel="noopener">WhatsApp: +65 8372 8852</a>
         <a href="mailto:hello@formepilates.sg">hello@formepilates.sg</a>
         <p>Mon–Sat: 6:30am – 8:30pm<br>Sun: Closed</p>
       </div>
@@ -1245,6 +1299,29 @@ body::after{
     </div>
   </div>
 </footer>
+
+<!-- =================== WHATSAPP WIDGET =================== -->
+<div class="whatsapp-widget" id="whatsappWidget">
+  <div class="whatsapp-panel" id="whatsappPanel" role="dialog" aria-label="Chat with FORME Pilates on WhatsApp" aria-hidden="true">
+    <div class="whatsapp-panel-header">
+      <h3>Chat With Us</h3>
+      <button type="button" class="whatsapp-panel-close" id="whatsappClose" aria-label="Close chat menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div class="whatsapp-prompts">
+      <a class="whatsapp-prompt" target="_blank" rel="noopener" href="#" data-msg="Hi! I'd like to book an intro class at FORME Pilates.">I'd like to book an intro class</a>
+      <a class="whatsapp-prompt" target="_blank" rel="noopener" href="#" data-msg="Hi! Could you share your class schedule and timings?">What are your class timings?</a>
+      <a class="whatsapp-prompt" target="_blank" rel="noopener" href="#" data-msg="Hi! Where is the studio located and how do I get there?">Where is the studio located?</a>
+      <a class="whatsapp-prompt" target="_blank" rel="noopener" href="#" data-msg="Hi! Could you tell me more about the $19 intro offer?">Tell me about the intro offer</a>
+      <a class="whatsapp-prompt" target="_blank" rel="noopener" href="#" data-msg="Hi! I'm new to Pilates - do you have classes suitable for beginners?">Do you have beginner-friendly classes?</a>
+    </div>
+  </div>
+  <button type="button" class="whatsapp-launcher" id="whatsappLauncher" aria-expanded="false" aria-controls="whatsappPanel" aria-label="Chat with us on WhatsApp">
+    <svg class="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12c0-4.97 4.03-9 9-9s9 4.03 9 9-4.03 9-9 9c-1.6 0-3.1-.42-4.4-1.15L3 21l1.2-4.27A8.96 8.96 0 0 1 3 12Z"/><path d="M8.5 9.5c0 3 2.5 5.5 5.5 5.5"/><circle cx="9" cy="9.5" r="0.6" fill="currentColor"/><circle cx="14" cy="14.5" r="0.6" fill="currentColor"/></svg>
+    <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19"/></svg>
+  </button>
+</div>
 
 <!-- =================== STICKY MOBILE CTA =================== -->
 <a href="#booking" class="sticky-cta" id="stickyCta">Book Intro Class →</a>
@@ -1472,6 +1549,43 @@ body::after{
       submitBtn.disabled = false;
       submitBtn.textContent = 'Reserve My Class';
     });
+  });
+
+  /* ===== WhatsApp Widget ===== */
+  const waWidget = document.getElementById('whatsappWidget');
+  const waLauncher = document.getElementById('whatsappLauncher');
+  const waPanel = document.getElementById('whatsappPanel');
+  const waClose = document.getElementById('whatsappClose');
+
+  const waFooterLink = document.querySelector('.footer-col a[href^="https://wa.me/"]');
+  const waNumber = waFooterLink ? waFooterLink.getAttribute('href').split('/').pop() : '6583728852';
+  waPanel.querySelectorAll('.whatsapp-prompt').forEach(link => {
+    link.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(link.dataset.msg)}`;
+  });
+
+  function openWaWidget(){
+    waWidget.classList.add('open');
+    waLauncher.setAttribute('aria-expanded','true');
+    waPanel.setAttribute('aria-hidden','false');
+  }
+  function closeWaWidget(){
+    waWidget.classList.remove('open');
+    waLauncher.setAttribute('aria-expanded','false');
+    waPanel.setAttribute('aria-hidden','true');
+  }
+  waLauncher.addEventListener('click', () => {
+    waWidget.classList.contains('open') ? closeWaWidget() : openWaWidget();
+  });
+  waClose.addEventListener('click', closeWaWidget);
+  document.addEventListener('click', e => {
+    if(waWidget.classList.contains('open') && !waWidget.contains(e.target)){
+      closeWaWidget();
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape' && waWidget.classList.contains('open')){
+      closeWaWidget();
+    }
   });
 
 })();
