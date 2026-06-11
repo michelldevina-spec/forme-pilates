@@ -20,7 +20,7 @@ There is no dev server or build command. Open `index.html` directly in a browser
 
 The file is organized top-to-bottom as:
 
-1. `<head>` — SEO meta tags, Google Fonts (`Marcellus` for serif headings, `Jost` for sans body/UI), and one large `<style>` block.
+1. `<head>` — SEO meta tags, Google Fonts (`Fraunces` variable serif for headings/display, `Jost` for sans body/UI), and one large `<style>` block.
 2. `<style>` block — organized into clearly commented sections in this order: CSS variables/reset → typography/eyebrow labels/buttons → navbar → one block per page section (hero, difference cards, timeline, classes, schedule widget, testimonials, intro offer, booking form, FAQ accordion, final CTA, footer, sticky mobile CTA).
 3. `<body>` — page sections in the same order as the CSS, each as a `<section id="...">` (e.g. `#hero`, `#difference`, `#experience`, `#classes`, `#schedule`, `#testimonials`, `#offer`, `#booking`, `#faq`), followed by a `<footer>` and a sticky mobile CTA bar.
 4. A single `<script>` IIFE at the end of `<body>` containing all JS.
@@ -36,6 +36,14 @@ All colors are defined as CSS custom properties on `:root` and must be used via 
 - `--white` (#FFFFFF) cards on fog background
 
 Section "eyebrow" labels use the `.eyebrow` class (uppercase, letter-spaced) and follow the brief's literal letter-spaced copy (e.g. "T H E M E T H O D"). Buttons use `.btn` + a variant: `.btn-primary`, `.btn-secondary`, `.btn-light`.
+
+Display type is `Fraunces` (variable, `font-optical-sizing: auto`), used for all headings, prices, timeline numbers, schedule times, and quote/blockquote text; `<em>` within headings renders as Fraunces italic for editorial emphasis (e.g. the hero h1). Body/UI type remains `Jost`.
+
+Every `.eyebrow` is preceded by the `.rail` motif — a small two-line "reformer rail" graphic with an animated `.carriage` dot that glides between the lines (`<span class="rail" aria-hidden="true"><span class="carriage"></span></span>`). This is the page's recurring signature element and should be kept on every eyebrow for consistency; the carriage animation is disabled under `prefers-reduced-motion: reduce`. On the dark `.offer` and `.final-cta` sections, the rail's line/carriage colors are overridden (`--graphite`/`--fog`) for contrast against `--charcoal`.
+
+A subtle fixed film-grain texture is applied via `body::after` (SVG fractal-noise data URI, `mix-blend-mode: overlay`, ~3.5% opacity, `pointer-events: none`) for editorial tactility — keep this monochrome-safe and non-interactive if touched.
+
+The hero (`#hero`) uses a CSS-only staggered entrance: `.hero-content > *` and `.hero-media` animate in via `heroUp`/`heroIn` keyframes with per-child `animation-delay` (no `fade-in`/IntersectionObserver on these elements, unlike the rest of the page). Reduced-motion users see all hero content immediately at full opacity.
 
 ### JavaScript (in the closing `<script>` IIFE)
 

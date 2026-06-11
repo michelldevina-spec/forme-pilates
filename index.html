@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-SG">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FORME PILATES | Reformer Pilates Studio Singapore</title>
 <meta name="description" content="FORME PILATES — a luxe boutique reformer and mat Pilates studio in Singapore. Beginner-friendly classes for women. Reserve your $19 intro class.">
+<link rel="canonical" href="https://michelldevina-spec.github.io/forme-pilates/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="geo.region" content="SG">
+<meta name="geo.placename" content="Singapore">
+<meta name="theme-color" content="#1F1F1E">
+
+<!-- Open Graph -->
+<meta property="og:type" content="business.business">
+<meta property="og:site_name" content="FORME PILATES">
+<meta property="og:title" content="FORME PILATES | Reformer Pilates Studio Singapore">
+<meta property="og:description" content="A luxe boutique reformer and mat Pilates studio in Singapore. Beginner-friendly classes for women. Reserve your $19 intro class.">
+<meta property="og:url" content="https://michelldevina-spec.github.io/forme-pilates/">
+<meta property="og:image" content="https://michelldevina-spec.github.io/forme-pilates/FORME_Pilates_OG.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FORME PILATES — Reformer Pilates Studio, Singapore">
+<meta property="og:locale" content="en_SG">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FORME PILATES | Reformer Pilates Studio Singapore">
+<meta name="twitter:description" content="A luxe boutique reformer and mat Pilates studio in Singapore. Beginner-friendly classes for women. Reserve your $19 intro class.">
+<meta name="twitter:image" content="https://michelldevina-spec.github.io/forme-pilates/FORME_Pilates_OG.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="FORME_Pilates_Logo.png">
+<link rel="apple-touch-icon" href="FORME_Pilates_Logo.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Marcellus&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
 <style>
 /* ===== Variables & Reset ===== */
 :root{
@@ -17,7 +46,7 @@
   --graphite:#5C5C59;
   --charcoal:#1F1F1E;
   --white:#FFFFFF;
-  --serif:'Marcellus', Georgia, serif;
+  --serif:'Fraunces', Georgia, serif;
   --sans:'Jost', Arial, sans-serif;
   --maxw:1200px;
   --nav-h:96px;
@@ -44,12 +73,14 @@ section{padding:80px 0;scroll-margin-top:var(--nav-h);}
 /* ===== Typography ===== */
 h1,h2,h3,h4{
   font-family:var(--serif);
+  font-optical-sizing:auto;
   font-weight:400;
   color:var(--charcoal);
   line-height:1.15;
   letter-spacing:0.01em;
 }
 h1{font-size:clamp(2.4rem,8vw,4.5rem);}
+h1 em{font-style:italic;}
 h2{font-size:clamp(1.9rem,5vw,3rem);}
 h3{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:400;}
 p{font-size:1rem;}
@@ -60,8 +91,42 @@ p{font-size:1rem;}
   letter-spacing:0.2em;
   text-transform:uppercase;
   color:var(--stone);
-  display:block;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
   margin-bottom:18px;
+}
+
+/* ===== Rail motif — recurring signature element (reformer carriage on its rails) ===== */
+.rail{
+  position:relative;display:inline-block;flex-shrink:0;
+  width:40px;height:12px;
+}
+.rail::before,.rail::after{
+  content:'';position:absolute;left:0;width:100%;height:1px;background:var(--dove);
+}
+.rail::before{top:0;}
+.rail::after{bottom:0;}
+.rail .carriage{
+  position:absolute;top:50%;left:0;width:6px;height:6px;
+  background:var(--charcoal);transform:translateY(-50%);
+  animation:railGlide 4.5s ease-in-out infinite;
+}
+@keyframes railGlide{
+  0%,100%{left:0;}
+  50%{left:calc(100% - 6px);}
+}
+
+/* ===== Film-grain texture overlay ===== */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:0.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .rail .carriage{animation:none;left:calc(50% - 3px);}
 }
 .section-head{margin-bottom:48px;text-align:center;}
 .section-head h2{margin-top:6px;}
@@ -166,6 +231,8 @@ p{font-size:1rem;}
 .hero-media{
   width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:2px;
   order:-1;
+  opacity:0;animation:heroIn 1.2s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:0.3s;
 }
 .hero-media img{
   width:100%;height:100%;object-fit:cover;
@@ -173,6 +240,27 @@ p{font-size:1rem;}
 }
 .hero-content{
   display:flex;flex-direction:column;align-items:flex-start;
+}
+.hero-content > *{
+  opacity:0;transform:translateY(28px);
+  animation:heroUp 0.9s cubic-bezier(.16,1,.3,1) forwards;
+}
+.hero-content > *:nth-child(1){animation-delay:0.05s;}
+.hero-content > *:nth-child(2){animation-delay:0.18s;}
+.hero-content > *:nth-child(3){animation-delay:0.32s;}
+.hero-content > *:nth-child(4){animation-delay:0.46s;}
+.hero-content > *:nth-child(5){animation-delay:0.58s;}
+.hero-content > *:nth-child(6){animation-delay:0.7s;}
+@keyframes heroUp{
+  from{opacity:0;transform:translateY(28px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes heroIn{
+  from{opacity:0;transform:scale(1.05);}
+  to{opacity:1;transform:scale(1);}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-content > *,.hero-media{animation:none;opacity:1;transform:none;}
 }
 .hero-content h1{margin-bottom:20px;}
 .hero-content .sub{
@@ -270,7 +358,7 @@ p{font-size:1rem;}
 }
 .timeline-step:last-child{border-bottom:none;}
 .timeline-step .num{
-  font-family:var(--serif);font-size:2.4rem;font-weight:400;
+  font-family:var(--serif);font-optical-sizing:auto;font-size:2.4rem;font-weight:400;
   color:var(--stone);line-height:1;flex-shrink:0;width:60px;
 }
 .timeline-step h3{font-size:1.1rem;}
@@ -357,7 +445,7 @@ p{font-size:1rem;}
   flex-wrap:wrap;
 }
 .schedule-row .time{
-  font-family:var(--serif);font-size:1.2rem;color:var(--charcoal);
+  font-family:var(--serif);font-optical-sizing:auto;font-size:1.2rem;color:var(--charcoal);
   width:88px;flex-shrink:0;
 }
 .schedule-row .info{flex:1;min-width:160px;}
@@ -382,7 +470,7 @@ p{font-size:1rem;}
 }
 .schedule-empty{
   padding:48px 4px;text-align:center;color:var(--graphite);
-  font-family:var(--serif);font-size:1.3rem;
+  font-family:var(--serif);font-optical-sizing:auto;font-style:italic;font-size:1.3rem;
 }
 @media(min-width:700px){
   .schedule-row .time{width:110px;font-size:1.35rem;}
@@ -403,7 +491,7 @@ p{font-size:1rem;}
 }
 .testimonial-card .stars{color:var(--charcoal);font-size:0.95rem;letter-spacing:0.15em;}
 .testimonial-card blockquote{
-  font-family:var(--serif);font-size:1.15rem;color:var(--charcoal);
+  font-family:var(--serif);font-optical-sizing:auto;font-size:1.15rem;color:var(--charcoal);
   line-height:1.5;font-style:italic;
 }
 .testimonial-author{
@@ -424,16 +512,20 @@ p{font-size:1rem;}
 /* ===== Intro Offer ===== */
 .offer{background:var(--charcoal);color:var(--fog);}
 .offer .eyebrow{color:var(--stone);}
+.offer .rail .carriage,
+.final-cta .rail .carriage{background:var(--fog);}
+.offer .rail::before,.offer .rail::after,
+.final-cta .rail::before,.final-cta .rail::after{background:var(--graphite);}
 .offer h2{color:var(--fog);}
 .offer .price-row{
   display:flex;align-items:baseline;gap:16px;margin:24px 0 28px;
 }
 .offer .price-old{
-  font-family:var(--serif);font-size:1.6rem;color:var(--stone);
+  font-family:var(--serif);font-optical-sizing:auto;font-size:1.6rem;color:var(--stone);
   text-decoration:line-through;
 }
 .offer .price-new{
-  font-family:var(--serif);font-size:3.2rem;color:var(--fog);
+  font-family:var(--serif);font-optical-sizing:auto;font-size:3.2rem;color:var(--fog);
 }
 .offer .guide-list{
   display:flex;flex-direction:column;gap:12px;margin:28px 0 32px;
@@ -578,6 +670,118 @@ p{font-size:1rem;}
   .footer-bottom{flex-direction:row;justify-content:space-between;align-items:flex-end;gap:32px;}
 }
 </style>
+
+<!-- ===== Structured Data: LocalBusiness (ExerciseGym) ===== -->
+<!-- NOTE: address, telephone, geo and social handles below are placeholders per CLAUDE.md — keep in sync with the footer/FAQ once real studio details are confirmed. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ExerciseGym",
+  "name": "FORME PILATES",
+  "alternateName": "FORME Pilates Singapore",
+  "description": "Boutique reformer and mat Pilates studio in Singapore offering beginner-friendly reformer Pilates, mat Pilates, prenatal & postnatal classes, and private sessions for women.",
+  "image": "https://michelldevina-spec.github.io/forme-pilates/FORME_Pilates_Logo.png",
+  "url": "https://michelldevina-spec.github.io/forme-pilates/",
+  "telephone": "+65 8912 3456",
+  "priceRange": "$$",
+  "currenciesAccepted": "SGD",
+  "paymentAccepted": "Cash, Credit Card, PayNow, Apple Pay, Google Pay",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Orchard Road, #02-14",
+    "addressLocality": "Singapore",
+    "postalCode": "238XXX",
+    "addressCountry": "SG"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 1.3009,
+    "longitude": 103.8389
+  },
+  "areaServed": "Singapore",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "06:30",
+      "closes": "20:30"
+    }
+  ],
+  "sameAs": [
+    "https://instagram.com/formepilates",
+    "https://tiktok.com/@formepilates",
+    "https://facebook.com/formepilates"
+  ],
+  "makesOffer": {
+    "@type": "Offer",
+    "name": "Intro Reformer Pilates Class",
+    "description": "First reformer or mat Pilates class for new clients, including a complimentary First-Timer's Guide.",
+    "price": "19",
+    "priceCurrency": "SGD",
+    "availability": "https://schema.org/LimitedAvailability"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Pilates Classes",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reformer Pilates", "description": "Full-body reformer Pilates classes for all levels in Singapore." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mat Pilates", "description": "Classical mat-based Pilates, ideal for beginners." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Prenatal & Postnatal Pilates", "description": "Pilates classes tailored for pregnancy and postpartum recovery, led by certified instructors." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Private Pilates Sessions", "description": "One-on-one, fully tailored Pilates sessions for injury recovery or accelerated progress." } }
+    ]
+  }
+}
+</script>
+
+<!-- ===== Structured Data: FAQPage (mirrors the visible FAQ accordion) ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "I've never done Pilates before — will I be able to keep up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Completely. Most of our members start exactly where you are now. Every reformer class includes modifications for first-timers, and your instructor will guide you through each movement before the class begins. There's no pace to keep up with except your own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I wear? Do I need grippy socks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wear comfortable, fitted activewear that lets you move freely — think leggings and a fitted top. Grippy (non-slip) socks are required on the reformer for safety and hygiene. If you don't have a pair, FORME grip socks are available for purchase at the studio."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I pay? Do you accept PayNow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — we accept PayNow, all major credit cards, and Apple/Google Pay. Beyond your $19 intro class, we offer single drop-ins and class packages (5, 10, and 20 packs) at member rates, which our team can walk you through after your first session."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the studio and is it near an MRT station?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "FORME PILATES is a 3-minute walk from Somerset MRT (Orchard Road exit), with street parking and ride-hail drop-off nearby. Full directions are sent in your booking confirmation on WhatsApp."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I practise if I'm pregnant or have an injury?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many of our members practise throughout pregnancy and recovery. Let us know in your booking message and we'll place you in an appropriate class — often Prenatal/Postnatal or a private session — with an instructor trained in safe modifications. Always check with your doctor before starting."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <!-- =================== NAVIGATION =================== -->
@@ -603,9 +807,9 @@ p{font-size:1rem;}
 <!-- =================== HERO =================== -->
 <section class="hero" id="hero">
   <div class="container hero-inner">
-    <div class="hero-content fade-in">
-      <span class="eyebrow">F O R M E P I L A T E S — S I N G A P O R E</span>
-      <h1>Strength, in Its Most Refined Form</h1>
+    <div class="hero-content">
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>F O R M E P I L A T E S — S I N G A P O R E</span>
+      <h1>Strength, in Its Most <em>Refined</em> Form</h1>
       <p class="sub">Reformer Pilates in the heart of Singapore — a calm, considered space for women to build strength, stand taller, and move with intention.</p>
       <div class="hero-ctas">
         <a href="#booking" class="btn btn-primary">Book Your $19 Intro Class</a>
@@ -628,8 +832,8 @@ p{font-size:1rem;}
         <p>Trusted by 2,000+ women across Singapore</p>
       </div>
     </div>
-    <div class="hero-media fade-in">
-      <img src="https://images.unsplash.com/photo-1747238415033-b74eec07eb59?w=900&q=70" alt="Reformer Pilates session in the studio at FORME PILATES Singapore" loading="eager" width="900" height="1125">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1747238415033-b74eec07eb59?w=900&q=70" alt="Reformer Pilates session in the studio at FORME PILATES Singapore" loading="eager" fetchpriority="high" width="900" height="1125">
     </div>
   </div>
 </section>
@@ -638,7 +842,7 @@ p{font-size:1rem;}
 <section class="difference" id="difference">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">W H Y F O R M E</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>W H Y F O R M E</span>
       <h2>The FORME Difference</h2>
     </div>
     <div class="cards-grid">
@@ -680,7 +884,7 @@ p{font-size:1rem;}
 <section class="experience" id="experience">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">T H E E X P E R I E N C E</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>T H E E X P E R I E N C E</span>
       <h2>Your First Visit</h2>
     </div>
     <div class="timeline">
@@ -708,7 +912,7 @@ p{font-size:1rem;}
 <section class="classes" id="classes">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">T H E M E T H O D</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>T H E M E T H O D</span>
       <h2>The Classes</h2>
       <p>Reformer Pilates Singapore, mat work, and beginner Pilates classes — designed for every body, every stage, every schedule.</p>
     </div>
@@ -753,7 +957,7 @@ p{font-size:1rem;}
 <section class="schedule" id="schedule">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">T H E S C H E D U L E</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>T H E S C H E D U L E</span>
       <h2>This Week at FORME</h2>
       <p>Reformer, mat, and prenatal classes running daily — pick a day to see what's on.</p>
     </div>
@@ -775,7 +979,7 @@ p{font-size:1rem;}
 <section class="testimonials" id="testimonials">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">I N T H E I R W O R D S</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>I N T H E I R W O R D S</span>
       <h2>Real Women, Real Routines</h2>
     </div>
     <div class="testimonial-grid">
@@ -821,7 +1025,7 @@ p{font-size:1rem;}
 <section class="offer" id="offer">
   <div class="container">
     <div class="fade-in">
-      <span class="eyebrow">B E G I N</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>B E G I N</span>
       <h2>Your First Class — $19</h2>
       <div class="price-row">
         <span class="price-old">$45</span>
@@ -845,7 +1049,7 @@ p{font-size:1rem;}
 <section class="booking" id="booking">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">B O O K N O W</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>B O O K N O W</span>
       <h2>Reserve Your $19 Intro Class</h2>
       <p>Leave your details and we'll WhatsApp you within the day to confirm your slot. No spam — promise.</p>
     </div>
@@ -936,7 +1140,7 @@ p{font-size:1rem;}
 <section class="faq" id="faq">
   <div class="container">
     <div class="section-head fade-in">
-      <span class="eyebrow">G O O D T O K N O W</span>
+      <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>G O O D T O K N O W</span>
       <h2>Frequently Asked Questions</h2>
     </div>
     <div class="faq-list fade-in">
@@ -973,7 +1177,7 @@ p{font-size:1rem;}
           <span class="faq-toggle"></span>
         </button>
         <div class="faq-answer">
-          <p>FORME PILATES is a 3-minute walk from [MRT Station], with street parking and ride-hail drop-off nearby. Full directions are sent in your booking confirmation on WhatsApp.</p>
+          <p>FORME PILATES is a 3-minute walk from Somerset MRT (Orchard Road exit), with street parking and ride-hail drop-off nearby. Full directions are sent in your booking confirmation on WhatsApp.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -992,7 +1196,7 @@ p{font-size:1rem;}
 <!-- =================== FINAL CTA =================== -->
 <section class="final-cta">
   <div class="container fade-in">
-    <span class="eyebrow">R E S E R V E Y O U R S P O T</span>
+    <span class="eyebrow"><span class="rail" aria-hidden="true"><span class="carriage"></span></span>R E S E R V E Y O U R S P O T</span>
     <h2>Find Your Forme</h2>
     <p>Intro places are limited each month. Reserve yours and make this the week you begin.</p>
     <a href="#booking" class="btn btn-light">Book My $19 Intro Class</a>
@@ -1012,7 +1216,7 @@ p{font-size:1rem;}
       <div class="footer-col">
         <h4>Visit Us</h4>
         <p>123 Orchard Road, #02-14<br>Singapore 238XXX</p>
-        <p>3-minute walk from Somerset MRT (placeholder)</p>
+        <p>3-minute walk from Somerset MRT</p>
       </div>
       <div class="footer-col">
         <h4>Get In Touch</h4>
