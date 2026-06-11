@@ -4,6 +4,8 @@ A single-file, static marketing landing page for **FORME PILATES**, a boutique r
 
 🔗 **Live site:** https://michelldevina-spec.github.io/forme-pilates/
 
+![FORME Pilates landing page screenshot](screenshot.png)
+
 ## Overview
 
 Everything — HTML, CSS, and JavaScript — lives in a single [index.html](index.html) file. There is no build step, package manager, bundler, linter, or test suite.
